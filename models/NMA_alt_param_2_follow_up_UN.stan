@@ -196,8 +196,10 @@ generated quantities {
                         sigmasq[d,k,l] = (sigmabsq[d] + tausq[k,d]) * ((sigmabsq[d] + tausq[l,d])); 
                         rho[d,k,l] = sigmabsq[d] / sqrt(sigmasq[d,k,l]);
                         // rho12 is the correlation between the t1'th and t2'th test (t1=t2 and t1 =/=t2 both possible) 
-                       rho12[d,k,l] =      Omega[1,1]*sqrt(Sigma[1,1])*sqrt(Sigma[2,2]) /
+                       rho12[d,k,l] =      Omega[1, 2]*sqrt(Sigma[1,1])*sqrt(Sigma[2,2]) /
                                            sqrt( (Sigma[1,1] + tausq[k,d]) * (Sigma[2,2] + tausq[l,d]) );
+                       //// NOTE: there was a mistake here (corrected 23rd March 2026) - previously said "Omega[1,1]" before (which is just 1 as corr matrix) but should have been "Omega[1,2]". 
+                       //// This does not affect key results/conclusions from the paper but may affect estimates (and conclusions drawn from such estimates) of between-study heterogenity.
                     }
                 }
             }
